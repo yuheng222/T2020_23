@@ -29,8 +29,7 @@ router.get('/login', function(req, res) {
 });
 
 router.post('/login', passport.authenticate('local'), function(req, res) {
-  console.log("TEST IN");
-  res.redirect('/');
+  res.redirect('/dashboard.html');
 });
 
 router.get('/logout', function(req, res) {

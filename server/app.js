@@ -17,8 +17,13 @@ var app = express();
 // view engine setup
 //app.set('views', path.join(__dirname, 'views'));
 //app.set('view engine', 'html');
-
+app.set('view engine', 'ejs');
 app.use(express.static(path.join(__dirname, 'views')));
+//app.use(express.static(__dirname + "/views/dashboard.html"));
+//app.get('/views/dashboard', function(req, res) {
+//  res.sendFile(__dirname + "/views/dashboard.html");
+//});
+//app.set('view engine', 'html');
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(__dirname + '/public/favicon.ico'));
