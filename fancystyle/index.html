@@ -68,11 +68,28 @@
 				</div>
 				<div class="col-lg-6">
 					<form class="hero-form">
-						<input type="text" placeholder="Account No.">
-						<input type="text" placeholder="Date of Birth">
+						<input type="text" placeholder="Account No." name="acc_no">
+						<input type="password" placeholder="Date of Birth" name="pwd">
 						<p>Security Alert: There has been an increase in scam calls targeting remittance and transfers. Always stay vigilant, verify any calls you receive, and never disclose your credentials such as User ID, PIN and credit card details to anyone.</p>
-						<button class="site-btn">Login</button>
+						<button class="site-btn" onclick="return check(this.form)">Login</button>
 					</form>
+
+					<script language="javascript">
+						function check(form)
+						{
+						
+						if(form.acc_no.value == "zlian001" && form.pwd.value == "zlian001")
+						{
+							window.open("elements.html");
+						}
+						else
+						{
+							alert("Error Password or Username")
+							return false;
+						}
+						}
+						</script>
+
 				</div>
 			</div>
 		</div>
