@@ -1,7 +1,26 @@
 <!doctype html>
 <html lang="en">
 
-    
+    <script>
+        var info = "";
+        function fetchData() {
+            fetch('http://techtrek-api-gateway.ap-southeast-1.elasticbeanstalk.com/transactions/79?from=01- 01-2018&to=01-30-2020', {
+                headers: new Headers({
+                    Identity: 'T67',
+                    Token: '6f854d2b-c7fd-415b-9c9a-cac0be3c0e30'
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                // console.log(data)
+                let s = JSON.stringify(data)
+                console.log(s)
+            })
+            .catch(error => console.error(error))
+        }
+        window.onload = fetchData()
+        document.getElementById("demo").innerHTML = s;
+    </script>
 
 <head>
     <meta charset="utf-8">
