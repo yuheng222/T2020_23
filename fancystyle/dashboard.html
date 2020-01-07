@@ -1,26 +1,7 @@
 <!doctype html>
 <html lang="en">
 
-    <script>
-        var info = "";
-        function fetchData() {
-            fetch('http://techtrek-api-gateway.ap-southeast-1.elasticbeanstalk.com/transactions/79?from=01- 01-2018&to=01-30-2020', {
-                headers: new Headers({
-                    Identity: 'T67',
-                    Token: '6f854d2b-c7fd-415b-9c9a-cac0be3c0e30'
-                })
-            })
-            .then(response => response.json())
-            .then(data => {
-                // console.log(data)
-                let s = JSON.stringify(data)
-                console.log(s)
-            })
-            .catch(error => console.error(error))
-        }
-        window.onload = fetchData()
-        document.getElementById("demo").innerHTML = s;
-    </script>
+    
 
 <head>
     <meta charset="utf-8">
@@ -482,7 +463,7 @@
                                 <div class="card mb-3 widget-content bg-midnight-bloom">
                                     <div class="widget-content-wrapper text-white">
                                         <div class="widget-content-left">
-                                            <div class="widget-heading">Total Balance</div>
+                                            <div class="widget-heading" id="demo">Total Balance</div>
 
                                             <script>
                                                 var info = "";
@@ -497,12 +478,12 @@
                                                     .then(data => {
                                                         // console.log(data)
                                                         let s = JSON.stringify(data)
+                                                        document.getElementById("demo").innerHTML = s;
                                                         console.log(s)
                                                     })
                                                     .catch(error => console.error(error))
                                                 }
                                                 window.onload = fetchData()
-                                                document.getElementById("demo").innerHTML = s;
                                             </script>
 
                                             <div class="widget-subheading" style="visibility: hidden;">L</div>
@@ -550,6 +531,60 @@
                                                         </div>
                                                     </div>
                                                 </div>
+
+                                                <script>
+                                                    const wrapper = document.getElementById('content');
+
+                                                        function fetchData() {
+                                                        fetch("http://techtrek-api-gateway.ap-southeast-1.elasticbeanstalk.com/transactions/:accountId?from=01- 01-2018&to=01-30-2020", {
+                                                            headers: new Headers({
+                                                                Identity: 'T67',
+                                                                Token: '6f854d2b-c7fd-415b-9c9a-cac0be3c0e30'
+                                                            })
+                                                        })
+                                                            .then(data => data.json())
+                                                            .then(jsonData => populate(jsonData))
+                                                            .catch(e => {
+                                                                wrapper.innerText = "Error: "+e+" going to use demo data";
+                                                            });
+                                                        };
+
+                                                        document.addEventListener('DOMContentLoaded', fetchData, false);
+
+                                                        function dom(tag, text) {
+                                                            let r = document.createElement(tag);
+                                                            if (text) r.innerText = text;
+                                                            return r;
+                                                        };
+
+                                                        function append(parent, child) { 
+                                                        parent.appendChild(child); 
+                                                        return parent; 
+                                                        };
+
+                                                        function populate(json) {
+                                                            if (json.length === 0) return;
+                                                            let keys = Object.keys(json[0]);
+                                                            let table = dom('table');
+                                                            //header
+                                                            append(table,
+                                                            keys.map(k => dom('th', k)).reduce(append, dom('tr'))
+                                                            );
+                                                            //values
+                                                            const makeRow = (acc, row) =>
+                                                                append(acc,
+                                                                    keys.map(k => dom('td', row[k])).reduce(append, dom('tr'))
+                                                                );
+                                                            json.reduce(makeRow, table);
+                                                            wrapper.appendChild(table);
+                                                        };
+                                                </script>
+
+                                                <div id="content"></div>
+
+
+
+
                                                 <h6 class="text-muted text-uppercase font-size-md opacity-5 font-weight-normal">Transactions</h6>
                                                 <div class="scroll-area-sm">
                                                     <div class="scrollbar-container">
