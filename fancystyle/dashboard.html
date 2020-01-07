@@ -1,27 +1,7 @@
 <!doctype html>
 <html lang="en">
 
-    <script>
-        function fetchData() {
-            fetch('http://techtrek-api-gateway.ap-southeast-1.elasticbeanstalk.com/customers/2/details', {
-                headers: new Headers({
-                    Identity: 'T67',
-                    Token: '6f854d2b-c7fd-415b-9c9a-cac0be3c0e30'
-                })
-            })
-            .then(response => response.json())
-            .then(data => {
-                console.log(data)
-            })
-            .catch(error => console.error(error))
-        }
-        window.onload= fetchData()
-
-        var mainContainer = document.getElementById("fdata");
-        var div = document.createElement("div");
-        div.innerHTML = data[i].gender;
-        mainContainer.appendChild(div);
-    </script>
+    
 
 <head>
     <meta charset="utf-8">
@@ -483,7 +463,29 @@
                                 <div class="card mb-3 widget-content bg-midnight-bloom">
                                     <div class="widget-content-wrapper text-white">
                                         <div class="widget-content-left">
-                                            <div class="widget-heading" id="fdata"></div>
+                                            <div class="widget-heading">Total Balance</div>
+
+                                            <script>
+                                                var info = "";
+                                                function fetchData() {
+                                                    fetch('http://techtrek-api-gateway.ap-southeast-1.elasticbeanstalk.com/customers/2/details', {
+                                                        headers: new Headers({
+                                                            Identity: 'T67',
+                                                            Token: '6f854d2b-c7fd-415b-9c9a-cac0be3c0e30'
+                                                        })
+                                                    })
+                                                    .then(response => response.json())
+                                                    .then(data => {
+                                                        // console.log(data)
+                                                        let s = JSON.stringify(data)
+                                                        console.log(s)
+                                                    })
+                                                    .catch(error => console.error(error))
+                                                }
+                                                window.onload = fetchData()
+                                                document.getElementById("demo").innerHTML = s;
+                                            </script>
+
                                             <div class="widget-subheading" style="visibility: hidden;">L</div>
                                         </div>
                                         <div class="widget-content-right">
