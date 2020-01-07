@@ -51,25 +51,28 @@ $(window).on('load', function() {
 	});
 
 	/*--------------------------
-		Loans slide calculator
+		Spending slide calculator
 	------------------------------*/
 	$("#slider-range-max").slider({
 	  range: "max",
-	  min: 1000,
-	  max: 15000,
+	  min: 100,
+	  max: 5000,
 	  step: 10,
 	  change: function (event, ui) {
 		$("#loan-value").text('$' + ui.value);
 		$("#lone-emi").text('$' + emi(ui.value));
 		console.log(ui);
+        $('#lone-emi2').text(emi2(ui.value));
 		
 	  },
 	  slide: function (event, ui) {
 		$("#loan-value").text('$' + ui.value);
 		$("#lone-emi").text('$' + emi(ui.value));
+        $('#lone-emi2').text(emi2(ui.value));
 	  }
 	});
   
+    
 	$("#lc-inc").click(function () {
 	  var value = $("#slider-range-max").slider("value");
 	  var step = $("#slider-range-max").slider("option", "step");
@@ -85,11 +88,25 @@ $(window).on('load', function() {
 
 	function emi (amount) {
 		var result,
-			emi = 52;
+			emi = 30;
 		result = Math.round(amount/emi);
 		return result;
 	}
 
+    function emi2 (amount) {
+        var result,
+        result = Math.round(amount);
+        var risklevel;
+        if(result <= 500) {
+			risklevel= "Low Risk";
+		} else if (result >= 2000) {
+			risklevel= "High Risk";
+		} else {
+			risklevel= "Medium Risk";
+        }
+        return risklevel
+    }
+  
 	/*------------------
 		Accordions
 	--------------------*/
